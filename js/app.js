@@ -49,6 +49,8 @@ function consultarAPI(ciudad, pais){
     const appId = '81f9a2dd69084965795f235977fd708a'; // Llave generada en el sitio openweathermap.org
     const url = `https://api.openweathermap.org/data/2.5/weather?q=${ciudad}, ${pais}&appid=${appId}`;
 
+    spinner(); // Muestra animación de carga
+
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(datos => {
@@ -111,4 +113,18 @@ function limpiarHTML(){
     while(resultado.firstChild){
         resultado.removeChild(resultado.firstChild);
     }
+}
+
+function spinner(){
+    limpiarHTML();
+
+    const divSpinner = document.createElement('div');
+    divSpinner.classList.add('spinner');
+
+    divSpinner.innerHTML = `
+        <div class="dot1"></div>
+        <div class="dot2"></div>
+    `;
+
+    resultado.appendChild(divSpinner);
 }
